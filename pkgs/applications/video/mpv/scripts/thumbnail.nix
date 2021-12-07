@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, python3, stdenvNoCC }:
+{ fetchFromGitHub, lib, python3, stdenvNoCC, workers ? 16 }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "mpv_thumbnail_script";
@@ -21,6 +21,10 @@ stdenvNoCC.mkDerivation rec {
     runHook preInstall
     mkdir -p $out/share/mpv/scripts
     cp mpv_thumbnail_script_{client_osc,server}.lua $out/share/mpv/scripts
+    for i in {1..${toString workers}}
+    do
+      cp mpv_thumbnail_script_server.lua $out/share/mpv/scripts/mpv_thumbnail_script_server-$i.lua
+    done
     runHook postInstall
   '';
 
