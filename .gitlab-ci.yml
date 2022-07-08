@@ -1,0 +1,9 @@
+image: nixos/nix:2.9.1
+
+stages:
+  - "build"
+
+build-job:
+  stage: "build"
+  script:
+    - "nix --extra-experimental-features 'nix-command flakes' build '.#apcupsd'"
