@@ -1,19 +1,20 @@
-{ lib, stdenvNoCC, fetchFromGitHub, youtube-dl }:
+{ lib, stdenvNoCC, fetchFromGitHub, yt-dlp }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "mpv-playlistmanager";
-  version = "unstable-2021-09-27";
+  version = "unstable-2022-12-14";
 
   src = fetchFromGitHub {
     owner = "jonniek";
     repo = "mpv-playlistmanager";
-    rev = "9a759b300c92b55e82be5824fe058e263975741a";
-    sha256 = "qMzDJlouBptwyNdw2ag4VKEtmkQNUlos0USPerBAV/s=";
+    rev = "0c562fd104b5447082813b482733a3c307466568";
+    sha256 = "sha256-KhJcZQzM4JzIyIiWfnLbP+DsNoVr8UNbL3EyJ6rxDkA=";
   };
 
   postPatch = ''
     substituteInPlace playlistmanager.lua \
-    --replace "'youtube-dl'" "'${youtube-dl}/bin/youtube-dl'" \
+    --replace 'youtube_dl_executable = "youtube-dl",' \
+    'youtube_dl_executable = "${yt-dlp}/bin/yt-dlp"',
   '';
 
   dontBuild = true;
