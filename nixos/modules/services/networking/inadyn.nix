@@ -156,6 +156,7 @@ in
   config = lib.mkIf cfg.enable {
     systemd.services.inadyn = {
       description = "Update nameservers using inadyn";
+      requires = [ "network-online.target" ];
       startAt = cfg.interval;
       serviceConfig = {
         Type = "oneshot";
