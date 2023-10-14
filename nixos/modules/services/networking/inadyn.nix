@@ -173,6 +173,7 @@ in
         PrivateDevices = true;
         PrivateTmp = true;
         PrivateUsers = true;
+        ProtectSystem = "strict";
         ProtectProc = "invisible";
         ProtectHome = true;
         ProtectClock = true;
