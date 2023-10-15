@@ -77,7 +77,7 @@ in
     in
     {
       enable = mkEnableOption (mdDoc ''
-        Whether to synchronise your machine's IP address with a dynamic DNS provider using inadyn.
+        synchronise your machine's IP address with a dynamic DNS provider using inadyn.
       '');
       interval = mkOption {
         default = "*-*-* *:*:00";
